@@ -16,7 +16,7 @@ public class FinixioTest extends TestSetup {
                 .navigateToURL(testData.gettestUrl())
                 .changeInvestInput(testData.getInvestInputValue())
                 .clickRefreshButton()
-                .detectAmountChange(testData.getInvestInputValue())
+                .detectAmountChange()
                 .getNumOfProviders(testData.getnumOfProviders());
         Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountBinance()), "Value for Binance is correct.");
         Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountCoinbase()), "Value for Coinbase is correct.");

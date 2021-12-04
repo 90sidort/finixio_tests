@@ -12,11 +12,9 @@ public class TestPage extends BasePage {
     private final By investInput = By.cssSelector("input[label=\"Invest\"]");
     private final By refreshButton = By.xpath("//button[contains(text(),'Refresh')]");
     private final By moreFilters = By.xpath("//button[contains(text(),'Load more +')]");
+    private final By changedAmount = By.xpath("//*[text()='for £2137 you get']");
 
     // Page elements selectors - functions that return elements that might be different
-    public By createChangedAmount(String amount) {
-        return By.xpath( "//*[text()='for £" + amount + " you get']");
-    }
     public By getExpectedProvidersNo(String amount) {
         return By.xpath( "//p[text()='" + amount + " Providers that match your filters']");
     }
@@ -57,17 +55,8 @@ public class TestPage extends BasePage {
     }
 
     // This method is responsible for checking if new input was accepted
-    public TestPage detectAmountChange(String amount) {
-        By changedAmount = createChangedAmount(amount);
+    public TestPage detectAmountChange() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(changedAmount));
-        return this;
-    }
-
-    // This method is responsible for checking if calculated amount
-    // of cryptocurrency is displayed
-    public TestPage checkCalculatedAmount(String expectedAmount) {
-        By calculatedAmount = getCalculatedAmount(expectedAmount);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(calculatedAmount));
         return this;
     }
 
