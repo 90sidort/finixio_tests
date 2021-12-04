@@ -71,6 +71,14 @@ public class TestPage extends BasePage {
         return this;
     }
 
+    // This method is responsible for checking if amount was
+    // recalculated on value change
+    public boolean isAmountRecalculated(String expectedAmount) {
+        By calculatedAmount = getCalculatedAmount(expectedAmount);
+        boolean isRecalculated = isElementDisplayed(calculatedAmount);
+        return isRecalculated;
+    }
+
     // This method is responsible for checking number of providers
     public TestPage getNumOfProviders(String expectedNoOfProviders) {
         By providersNumber = getExpectedProvidersNo(expectedNoOfProviders);
