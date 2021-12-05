@@ -12,4 +12,4 @@ I'd also recommend use of [IntelliJ 2021.3](https://www.jetbrains.com/idea/downl
 - Git clone the project
 - Open the project in your IDE (IntelliJ Community Edition 2021.3 recommended)
 - Install Maven dependencies
-- Now tests can be run. Test cases are described in [this](https://docs.google.com/spreadsheets/d/1rqzU-SR0StQcbfq2u8zTjKuYH83xqXX81hs_ik2yCeU/edit?usp=sharing) file. Development run [example](https://drive.google.com/file/d/1KovIHOffRNbQYgsTvsUQ00XG0_QUmGer/view?usp=sharing).
+- Now tests can be run. Test cases are described in [this](https://docs.google.com/spreadsheets/d/1rqzU-SR0StQcbfq2u8zTjKuYH83xqXX81hs_ik2yCeU/edit?usp=sharing) file. Development run [example](https://drive.google.com/file/d/178oQuQ2pyK_wrdhNqPhS1MeI0G9uAxHf/view?usp=sharing).
