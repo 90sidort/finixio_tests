@@ -13,15 +13,19 @@ public class FinixioTest extends TestSetup {
         // Test ID: SSR_01
         TestData testData = new TestData();
         TestPage testPage = new TestPage(driver, wait)
-                .navigateToURL(testData.gettestUrl())
-                .changeInvestInput(testData.getInvestInputValue())
-                .clickRefreshButton()
-                .detectAmountChange()
-                .getNumOfProviders(testData.getnumOfProviders());
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountBinance()), "Value for Binance is incorrect.");
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountCoinbase()), "Value for Coinbase is incorrect.");
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountEtoro()), "Value for Etoro is incorrect.");
-
+                .navigateToURL(testData.gettestUrl());
+        String valueOneBeforeChange = testPage.getCalculatedValue(testData.getinvestInitial(),0);
+        String valueTwoBeforeChange = testPage.getCalculatedValue(testData.getinvestInitial(),1);
+        String valueThreeBeforeChange = testPage.getCalculatedValue(testData.getinvestInitial(),2);
+        testPage.changeInvestInput(testData.getInvestInputValue()).clickRefreshButton()
+            .detectAmountChange()
+            .getNumOfProviders(testData.getnumOfProviders());
+        String valueOneAfterChange = testPage.getCalculatedValue(testData.getInvestInputValue(),0);
+        String valueTwoAfterChange = testPage.getCalculatedValue(testData.getInvestInputValue(),1);
+        String valueThreeAfterChange = testPage.getCalculatedValue(testData.getInvestInputValue(),2);
+        Assert.assertNotEquals(valueOneBeforeChange, valueOneAfterChange, "Value for Binance does not change!");
+        Assert.assertNotEquals(valueTwoBeforeChange, valueTwoAfterChange, "Value for Coinbase does not change!");
+        Assert.assertNotEquals(valueThreeBeforeChange, valueThreeAfterChange, "Value for Etoro does not change!");
     }
 
     @Test

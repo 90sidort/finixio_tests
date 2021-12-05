@@ -19,8 +19,8 @@ public class TestPage extends BasePage {
     public By getExpectedProvidersNo(String amount) {
         return By.xpath( "//p[text()='" + amount + " Providers that match your filters']");
     }
-    public By getCalculatedAmount(String calculatedAmount) {
-        return By.xpath( "//span[text()='" + calculatedAmount + "']");
+    public By getConvertedAmount(String amount) {
+        return By.xpath("//*[text()='for £" + amount + " you get']/following-sibling::div");
     }
 
     public TestPage(WebDriver driver, WebDriverWait wait) {
@@ -61,12 +61,14 @@ public class TestPage extends BasePage {
         return this;
     }
 
-    // This method is responsible for checking if amount was
-    // recalculated on value change
-    public boolean isAmountRecalculated(String expectedAmount) {
-        By calculatedAmount = getCalculatedAmount(expectedAmount);
-        boolean isRecalculated = isElementDisplayed(calculatedAmount);
-        return isRecalculated;
+    // This method reads converted rate and returns it as a string so
+    // it can be latter compared
+    public String getCalculatedValue(String amount, int index) {
+        By currentAmount = getConvertedAmount(amount);
+        wait.until(ExpectedConditions.presenceOfElementLocated(currentAmount));
+        WebElement valueFromConversion = driver.findElements(currentAmount).get(index);
+        String conversionValueText = valueFromConversion.getText();
+        return conversionValueText;
     }
 
     // This method checks if count of loaded providers is equal
