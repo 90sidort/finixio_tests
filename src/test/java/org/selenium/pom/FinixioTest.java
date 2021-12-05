@@ -18,9 +18,9 @@ public class FinixioTest extends TestSetup {
                 .clickRefreshButton()
                 .detectAmountChange()
                 .getNumOfProviders(testData.getnumOfProviders());
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountBinance()), "Value for Binance is correct.");
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountCoinbase()), "Value for Coinbase is correct.");
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountEtoro()), "Value for Etoro is correct.");
+        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountBinance()), "Value for Binance is incorrect.");
+        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountCoinbase()), "Value for Coinbase is incorrect.");
+        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountEtoro()), "Value for Etoro is incorrect.");
 
     }
 
@@ -32,6 +32,6 @@ public class FinixioTest extends TestSetup {
                 .navigateToURL(testData.gettestUrl())
                 .clickLoadMore()
                 .getNumOfProviders(testData.getnumOfProviders());
-        Assert.assertTrue(testPage.isAmountRecalculated(testData.getCalculatedAmountCoinCorner()), "Value for CoinCorner is correct.");
+        Assert.assertTrue(testPage.isProviderCountCorrect(testData.getexpectedProviderCount()), "Count of displayed providers is incorrect.");
     }
 }

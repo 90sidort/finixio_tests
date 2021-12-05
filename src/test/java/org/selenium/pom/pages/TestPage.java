@@ -13,6 +13,7 @@ public class TestPage extends BasePage {
     private final By refreshButton = By.xpath("//button[contains(text(),'Refresh')]");
     private final By moreFilters = By.xpath("//button[contains(text(),'Load more +')]");
     private final By changedAmount = By.xpath("//*[text()='for £2137 you get']");
+    private final By displayedProviders = By.xpath("//div[contains(text(),'What we like')][ancestor::div[@id='crypto507']]");
 
     // Page elements selectors - functions that return elements that might be different
     public By getExpectedProvidersNo(String amount) {
@@ -68,7 +69,15 @@ public class TestPage extends BasePage {
         return isRecalculated;
     }
 
-    // This method is responsible for checking number of providers
+    // This method checks if count of loaded providers is equal
+    // to expected value
+    public boolean isProviderCountCorrect(int expectedCount) {
+        int displayedCount = driver.findElements(displayedProviders).size();
+        boolean isCountCorrect = displayedCount == expectedCount;
+        return isCountCorrect;
+    }
+
+    // This method is responsible for reading providers number
     public TestPage getNumOfProviders(String expectedNoOfProviders) {
         By providersNumber = getExpectedProvidersNo(expectedNoOfProviders);
         wait.until(ExpectedConditions.visibilityOfElementLocated(providersNumber));
